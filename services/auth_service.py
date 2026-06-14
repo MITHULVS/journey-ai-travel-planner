@@ -10,7 +10,6 @@ from schemas.user_schema import UserLogin
 
 from utils.helper import hash_password,verify_password,create_access_token
 
-import httpx
 
 
 async def signup_service(user: UserSignup, db: AsyncSession):
@@ -36,21 +35,6 @@ async def signup_service(user: UserSignup, db: AsyncSession):
             email=user.email,
             password_hash=hash_password(user.password)
         )
-
-        try:
-
-            async with httpx.AsyncClient() as client:
-
-                await client.post(
-                    "http://localhost:5678/webhook-test/f44aaae3-2b46-4edf-80c7-c8c94a7732b3",
-                    json={
-                        "name": user.name,
-                        "email": user.email
-                    }
-                )
-
-        except Exception as e:
-            print(f"Email workflow failed: {e}")
 
         db.add(new_user)
 
