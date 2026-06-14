@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Journey Travel Planner</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- SECTION 1: HERO HEADER -->
+    <header class="hero-header">
+        <div class="banner-carousel">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=400&fit=crop" alt="Travel Family" class="banner-image active">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&h=400&fit=crop" alt="Mountain Travel" class="banner-image">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop" alt="Beach Travel" class="banner-image">
+            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1200&h=400&fit=crop" alt="Adventure Travel" class="banner-image">
+        </div>
+        <div class="banner-overlay"></div>
+        
+        <nav class="navbar">
+            <div class="nav-buttons">
+                <button class="nav-btn profile-btn" id="profileBtn">Profile</button>
+                <button class="nav-btn logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content">
+        <!-- SECTION 2: FILTER PANEL -->
+        <aside class="filter-panel">
+            <h3 class="filter-title">Filters</h3>
+            
+            <div class="filter-group">
+                <label for="continentSelect">Continent</label>
+                <select id="continentSelect" class="filter-select">
+                    <option value="">All Continents</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Antarctica">Antarctica</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="Oceania">Oceania</option>
+                    <option value="South America">South America</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="beachFilter" class="filter-checkbox">
+                    <span>Beach</span>
+                </label>
+            </div>
+
+            <div class="filter-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="partyFilter" class="filter-checkbox">
+                    <span>Party</span>
+                </label>
+            </div>
+
+            <div class="filter-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="metroFilter" class="filter-checkbox">
+                    <span>Metro</span>
+                </label>
+            </div>
+
+            <div class="filter-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="natureFilter" class="filter-checkbox">
+                    <span>Nature</span>
+                </label>
+            </div>
+
+            <div class="filter-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="familyFilter" class="filter-checkbox">
+                    <span>Family Friendly</span>
+                </label>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="btn-apply" id="applyFilterBtn">Apply Filters</button>
+                <button class="btn-reset" id="resetFilterBtn">Reset</button>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area">
+            <!-- SECTION 3: SEARCH BAR -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Search destinations..."
+                    >
+                    <button class="btn-search" id="searchBtn">Search</button>
+                </div>
+            </div>
+
+            <!-- SECTION 4: DESTINATION GRID -->
+            <div class="destinations-container">
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Loading destinations...</p>
+                </div>
+
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+                <div class="destinations-grid" id="destinationsGrid">
+                    <!-- Cards will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="pagination-container">
+                <button class="btn-pagination" id="prevBtn" disabled>Previous</button>
+                <span class="page-info" id="pageInfo">Page 1</span>
+                <button class="btn-pagination" id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESTINATION DETAILS MODAL -->
+    <div class="modal" id="destinationModal" style="display: none;">
+        <div class="modal-backdrop" id="destinationBackdrop"></div>
+        <div class="modal-content destination-modal">
+            <button class="modal-close" id="destinationModalClose">&times;</button>
+            
+            <div class="modal-header">
+                <h2 id="destinationName"></h2>
+            </div>
+
+            <img id="destinationImage" src="" alt="Destination" class="destination-image">
+
+            <form class="travel-plan-form" id="travelPlanForm">
+                <div class="form-group">
+                    <label for="budgetSelect">Budget</label>
+                    <select id="budgetSelect" class="form-input" required>
+                        <option value="">Select Budget</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="durationInput">Duration (Days)</label>
+                    <input 
+                        type="number" 
+                        id="durationInput" 
+                        class="form-input" 
+                        placeholder="Number of days"
+                        min="1"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="travelTypeInput">Travel Type</label>
+                    <input 
+                        type="text" 
+                        id="travelTypeInput" 
+                        class="form-input" 
+                        placeholder="e.g., Solo, Family, Group"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="accommodationInput">Accommodation</label>
+                    <input 
+                        type="text" 
+                        id="accommodationInput" 
+                        class="form-input" 
+                        placeholder="e.g., Hotel, Hostel, Airbnb"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="interestsInput">Interests (comma-separated)</label>
+                    <input 
+                        type="text" 
+                        id="interestsInput" 
+                        class="form-input" 
+                        placeholder="e.g., Beach, Food, History"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="customRequirementsInput">Custom Requirements</label>
+                    <textarea 
+                        id="customRequirementsInput" 
+                        class="form-textarea" 
+                        placeholder="Any specific requirements?"
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn-create-plan" id="createPlanBtn">Create Plan</button>
+            </form>
+
+            <div id="formError" class="form-error" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- GENERATED PLAN MODAL -->
+    <div class="modal" id="generatedPlanModal" style="display: none;">
+        <div class="modal-backdrop" id="planBackdrop"></div>
+        <div class="modal-content generated-plan-modal">
+            <button class="modal-close" id="planModalClose">&times;</button>
+            
+            <div class="modal-header">
+                <h2>Generated Travel Plan</h2>
+            </div>
+
+            <div class="plan-content" id="planContent">
+                <!-- Generated plan will be displayed here -->
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-modal" id="closePlanBtn">Close</button>
+                <button class="btn-modal btn-primary" id="saveContinueBtn">Save And Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>

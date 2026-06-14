@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Plan - Journey Travel Planner</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="edit-plan-page">
+    <!-- HEADER -->
+    <header class="profile-header">
+        <div class="header-container">
+            <div class="header-left">
+                <img src="https://img.icons8.com/fluency/96/000000/world-map.png" alt="Journey Logo" class="header-logo">
+                <h1 class="header-title">Journey</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-email" id="userEmail"></span>
+                <button class="btn-logout" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- EDIT PLAN SECTION -->
+    <main class="edit-plan-main">
+        <div class="edit-plan-container">
+            <h2>Edit Travel Plan</h2>
+            
+            <!-- LOADING SPINNER -->
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Updating plan...</p>
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+            <!-- EDIT FORM -->
+            <form class="edit-plan-form" id="editPlanForm">
+                <div class="form-group">
+                    <label for="budgetSelect">Budget</label>
+                    <select id="budgetSelect" class="form-input" required>
+                        <option value="">Select Budget</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="durationInput">Duration (Days)</label>
+                    <input 
+                        type="number" 
+                        id="durationInput" 
+                        class="form-input" 
+                        placeholder="Number of days"
+                        min="1"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="travelTypeInput">Travel Type</label>
+                    <input 
+                        type="text" 
+                        id="travelTypeInput" 
+                        class="form-input" 
+                        placeholder="e.g., Solo, Family, Group"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="accommodationInput">Accommodation</label>
+                    <input 
+                        type="text" 
+                        id="accommodationInput" 
+                        class="form-input" 
+                        placeholder="e.g., Hotel, Hostel, Airbnb"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="interestsInput">Interests (comma-separated)</label>
+                    <input 
+                        type="text" 
+                        id="interestsInput" 
+                        class="form-input" 
+                        placeholder="e.g., Beach, Food, History"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="customRequirementsInput">Custom Requirements</label>
+                    <textarea 
+                        id="customRequirementsInput" 
+                        class="form-textarea" 
+                        placeholder="Any specific requirements?"
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn-update-plan" id="updatePlanBtn">Update Plan</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- UPDATED PLAN MODAL -->
+    <div class="modal" id="updatedPlanModal" style="display: none;">
+        <div class="modal-backdrop" id="planBackdrop"></div>
+        <div class="modal-content updated-plan-modal">
+            <button class="modal-close" id="planModalClose">&times;</button>
+            
+            <div class="modal-header">
+                <h2>Updated Travel Plan</h2>
+            </div>
+
+            <div class="plan-content" id="planContent">
+                <!-- Updated plan will be displayed here -->
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-modal" id="closeModalBtn">Close</button>
+                <button class="btn-modal btn-primary" id="backToProfileBtn">Back To Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/edit-plan.js"></script>
+</body>
+</html>

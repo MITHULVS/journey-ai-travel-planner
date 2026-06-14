@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Journey Travel Planner</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="profile-page">
+    <!-- HEADER -->
+    <header class="profile-header">
+        <div class="header-container">
+            <div class="header-left">
+                <h1 class="header-title">Journey</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-email" id="userEmail"></span>
+                <button class="btn-logout" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PROFILE SECTION -->
+    <main class="profile-main">
+        <div class="profile-container">
+            <div class="profile-header-section">
+                <h2>My Travel Plans</h2>
+                <div class="profile-info">
+                    <p class="info-label">Email:</p>
+                    <p class="info-value" id="profileEmail"></p>
+                    <p class="info-label">Total Plans:</p>
+                    <p class="info-value" id="totalPlans">0</p>
+                </div>
+            </div>
+
+            <!-- LOADING SPINNER -->
+            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading your travel plans...</p>
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+            <!-- NO PLANS MESSAGE -->
+            <div id="noPlansMessage" class="no-plans-container" style="display: none;">
+                <h3>No travel plans found.</h3>
+                <p>Start exploring destinations and create your first travel plan.</p>
+                <a href="home.html" class="btn-explore">Explore Destinations</a>
+            </div>
+
+            <!-- PLANS GRID -->
+            <div class="plans-grid" id="plansGrid">
+                <!-- Plans will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- DELETE CONFIRMATION MODAL -->
+    <div class="modal" id="deleteConfirmModal" style="display: none;">
+        <div class="modal-backdrop" id="deleteBackdrop"></div>
+        <div class="modal-content confirm-modal">
+            <h2>Delete Travel Plan</h2>
+            <p>Are you sure you want to delete this travel plan?</p>
+            <div class="modal-footer">
+                <button class="btn-modal" id="cancelDeleteBtn">Cancel</button>
+                <button class="btn-modal btn-danger" id="confirmDeleteBtn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS TOAST -->
+    <div id="successToast" class="toast" style="display: none;">
+        <p id="toastMessage"></p>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
