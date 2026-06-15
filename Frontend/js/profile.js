@@ -3,7 +3,7 @@
  * Handles fetching, displaying, editing, and deleting travel plans.
  */
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "https://journey-ai-travel-planner.onrender.com";
 
 // ─── Auth Guard ───────────────────────────────────────────────────────────────
 (function checkAuth() {
